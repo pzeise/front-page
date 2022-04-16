@@ -1,10 +1,14 @@
 require('dotenv').config()
 const express = require('express')
+const subPageControllers = require('./controllers/subPages')
+const userPostControllers = require('./controllers/userPosts')
+
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-
+app.use('/r', subPageControllers)
+app.use('/r', userPostControllers)
 
 
 
