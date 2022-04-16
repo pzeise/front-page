@@ -1,12 +1,11 @@
 const mongoose = require('../db/connection')
-const UserPost = require('./userPost-model')
-// const ObjectId = mongoose.SchemaType.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const SubPageSchema = new mongoose.Schema(
     {
         title: {type: String, required: true, unique: true},
         description: String,
-        posts: [{type: Object}]//Id, ref: UserPost}]
+        posts: [{type: ObjectId, ref: 'UserPost'}]
         //stretch goals
         //banner: String,
         //users: [{type: ObjectId, ref: PageUser}]
