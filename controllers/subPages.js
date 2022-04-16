@@ -7,3 +7,5 @@ const UserPost = require('../models/userPost-model')
 router.get('/', (req, res) => {
     res.send(`hackerman: we're in`)
 })
+
+module.exports = router

@@ -1,4 +1,5 @@
 const mongoose = require('../db/connection')
+const ObjectId = mongoose.SchemaType.ObjectId
 
 const UserPostSchema = new mongoose.Schema(
     {
@@ -6,8 +7,8 @@ const UserPostSchema = new mongoose.Schema(
         description: String,
         img: String,
         //Stretch Goals
-        //author: PageUser,
-        //votes: [{type: UserVotes}]
+        //author: {type: ObjectId, ref: PageUser},
+        //votes: [{type: ObjectId, ref: UserVote}]
     },
     {timestamps: true}
 )
