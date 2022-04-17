@@ -40,7 +40,9 @@ router.put('/:subPage', (req, res) => {
 })
 
 router.delete('/:subPage', (req, res) => {
-    SubPage.findOneAndDelete({title: req.params.subPage})
+    SubPage.findOne({title: req.params.subPage})
+    .then(sub => UserPost.deleteMany({subPage: sub}))
+    .then(() => SubPage.findOneAndDelete({title: req.params.subPage}))    
     .catch(console.error)
 })
 
