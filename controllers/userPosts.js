@@ -13,7 +13,7 @@ router.get('/:subPage/:id', (req, res) => {
 router.post('/:subPage', (req, res) => {
     SubPage.findOne({title: req.params.subPage})
     .then(sub => {
-        UserPost.create({
+        return UserPost.create({
             title: req.body.title,
             description: req.body.description,
             img: req.body.img,
@@ -21,9 +21,9 @@ router.post('/:subPage', (req, res) => {
         })
         .then(post => {
             sub.posts.push(post._id)
+            sub.save()
             console.log(sub)
-            // .then(() => {res.send(post, sub)})
-            res.send(post, sub)
+            res.send(post)
         })
         .catch(console.error)
     })
