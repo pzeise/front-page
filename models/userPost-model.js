@@ -5,6 +5,7 @@ const UserPostSchema = new mongoose.Schema(
     {
         title: {type: String, required: true},
         description: String,
+        shortDescription: String,
         img: String,
         subPage: {type: ObjectId, ref: 'SubPage'}
         //Stretch Goals

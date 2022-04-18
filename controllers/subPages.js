@@ -15,7 +15,14 @@ router.get('/', (req, res) => {
 //UserPost Index
 router.get('/all', (req, res) => {
     UserPost.find({})
-    .then(posts => res.send(posts))
+    .populate('subPage')
+    .then(posts => res.render('all', {allPosts : posts}))
+    .catch(console.error)
+})
+
+router.get('/:subPage/:id', (req, res) => {
+    UserPost.findById(req.params.id)
+    .then(post => res.send(post))
     .catch(console.error)
 })
 

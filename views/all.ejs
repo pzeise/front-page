@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs') %> 
+
+<h1>Front Page /r/all</h1>
+<div class="row row-cols-1 row-cols-md-1 g-4"></div>
+    <% for (let i=0; i<allPosts.length; i++) {%> 
+        <div class="card mb-3" style="max-width: 1080px;">
+            <div class="row g-0">
+            <% if (allPosts[i].img) {%> 
+              <div class="col-md-4 w-10">
+                <img src="<%= allPosts[i].img %>" class="img-fluid rounded-start" >
+              </div>
+              <% } %> 
+              <div class="col-md-8">
+                <div class="card-body">
+                  <a class="card-title text-start" href="/r/<%= allPosts[i].subPage.title %>/<%= allPosts[i]._id %>"><%= allPosts[i].title %></a>
+                  <% if (allPosts[i].shortDescription) {%> 
+                  <p class="card-text"><%= allPosts[i].shortDescription %></p>
+                  <% } %> 
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } %> 
+    </div>
