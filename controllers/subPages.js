@@ -20,17 +20,11 @@ router.get('/all', (req, res) => {
     .catch(console.error)
 })
 
-router.get('/:subPage/:id', (req, res) => {
-    UserPost.findById(req.params.id)
-    .then(post => res.send(post))
-    .catch(console.error)
-})
-
 router.get('/:subPage', (req, res) => {
     if (consoleToggle) {console.log(`hit ${req.params.subPage} get`)}
     SubPage.findOne({title: req.params.subPage})
     .populate('posts')
-    .then(sub => res.send(sub.posts))
+    .then(sub => res.render('subPage', {subPage : sub, posts: sub.posts}))
     .catch(console.error)
 })
 

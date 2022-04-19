@@ -5,6 +5,12 @@ const SubPage = require('../models/subPage-model')
 const UserPost = require('../models/userPost-model')
 
 
+router.get('/:subPage/:id', (req, res) => {
+    UserPost.findById(req.params.id)
+    .then(post => res.render('post', {post: post}))
+    .catch(console.error)
+})
+
 router.post('/:subPage', (req, res) => {
     SubPage.findOne({title: req.params.subPage})
     .then(sub => {

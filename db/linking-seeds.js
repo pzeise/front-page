@@ -18,16 +18,16 @@ UserPost.find({})
         console.log(posts)
         for(let i = 0; i < posts.length; i++) {
             if (i<3) {
-                posts[i].subPage = pageIndex[0]._id
+                posts[i].subPage = pageIndex[0]
                 pageIndex[0].posts.push(posts[i]._id)
                 console.log(`adding a ${pageIndex[0].posts.length} item to ${pageIndex[0].title}`)
             }
             else if (i<6) {
-                posts[i].subPage = pageIndex[1]._id
+                posts[i].subPage = pageIndex[1]
                 pageIndex[1].posts.push(posts[i]._id)
             }
             else {
-                posts[i].subPage = pageIndex[2]._id
+                posts[i].subPage = pageIndex[2]
                 pageIndex[2].posts.push(posts[i]._id)
             }
         }
