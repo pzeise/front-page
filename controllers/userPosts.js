@@ -5,26 +5,34 @@ const SubPage = require('../models/subPage-model')
 const UserPost = require('../models/userPost-model')
 
 
+router.get('/:subPage/post', (req, res) => {
+    SubPage.find({})
+    .then(subs => {
+        res.render('post', {subList: subs, currentSub: subs.find(sub => sub.title === req.params.subPage)})})
+    .catch(console.error)
+})
 router.get('/:subPage/:id', (req, res) => {
     UserPost.findById(req.params.id)
-    .then(post => res.render('post', {post: post}))
+    .populate('subPage')
+    .then(post => res.render('viewPost', {post: post}))
     .catch(console.error)
 })
 
-router.post('/:subPage', (req, res) => {
-    SubPage.findOne({title: req.params.subPage})
+router.post('/all', (req, res) => {
+    console.log(req.body)
+    SubPage.findOne({title: req.body.subPage})
     .then(sub => {
         return UserPost.create({
             title: req.body.title,
             description: req.body.description,
             img: req.body.img,
-            subPage: sub//._id
+            subPage: sub
         })
         .then(post => {
-            sub.posts.push(post._id)
+            sub.posts.push(post)
             sub.save()
             console.log(sub)
-            res.send(post)
+            res.redirect('/r/' + sub.title + '/' + post._id)
         })
         .catch(console.error)
     })
