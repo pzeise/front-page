@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs', {subPage: (currentSub) ? currentSub : false}) %> 
 
-<form action="/r/all" method="POST">
+<form action="/r/<%= (post) ? `${post.subPage.title}/${post._id}?_method=put` : "all/post/"%>" method="POST">
     <select class="form-select" name="subPage" aria-label="Default select example">
         <% if (currentSub) {%> 
             <option value="<%= currentSub.title %>" selected><%= currentSub.title %></option>
@@ -13,19 +13,19 @@
     <div class="row form-group">
         <label for="title" class="col-sm-2 col-form-label col-form-label-lg">Title:</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control form-control-lg" id="title" name="title">
+        <input type="text" class="form-control form-control-lg" id="title" name="title" <% if (post) {%> value="<%=post.title%>" <% } %> required>
         </div>
     </div>
     <div class="row mb-3 form-group">
         <label for="img" class="col-sm-2 col-form-label">Image Link:</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control" id="img" name="img">
+        <input type="text" class="form-control" id="img" <% if (post) {%> value="<%=post.img%>" <% } %> name="img">
         </div>
     </div>
     <div class="row mb-3 form-group">
         <label for="description" class="col-sm-2 col-form-label">What do you have to say?</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control" id="description" name="description">
+        <input type="text" class="form-control" id="description" <% if (post) {%> value="<%=post.description%>" <% } %> name="description">
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Post</button>

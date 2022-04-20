@@ -5,9 +5,9 @@ const SubPageSchema = new mongoose.Schema(
     {
         title: {type: String, required: true, unique: true},
         description: String,
-        posts: [{type: ObjectId, ref: 'UserPost'}]
+        posts: [{type: ObjectId, ref: 'UserPost'}],
+        banner: String
         //stretch goals
-        //banner: String,
         //users: [{type: ObjectId, ref: PageUser}]
     },
     {timestamps: true}   

@@ -1,6 +1,7 @@
 <%- include('../partials/header.ejs', {subPage: subPage}) %> 
 
 <h1><%= subPage.title%></h1>
+<a class="card-text" href="/r/<%= subPage.title%>/edit"><small class="text-muted">edit</small></a>
 <div class="row row-cols-1 row-cols-md-1 g-4"></div>
     <% for (let i=0; i<posts.length; i++) {%> 
         <div class="card mb-3" style="max-width: 1080px;">
