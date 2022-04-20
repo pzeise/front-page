@@ -8,7 +8,7 @@ const UserPost = require('../models/userPost-model')
 router.get('/:subPage/post', (req, res) => {
     SubPage.find({})
     .then(subs => {
-        res.render('post', {subList: subs, post: false, currentSub: subs.find(sub => sub.title === req.params.subPage)})})
+        res.render('createPost', {subList: subs, post: false, currentSub: subs.find(sub => sub.title === req.params.subPage)})})
     .catch(console.error)
 })
 //view a post
@@ -23,7 +23,7 @@ router.get('/:subPage/:id/edit', (req, res) => {
     UserPost.findById(req.params.id)
     .populate('subPage')
     .then(post => {
-        res.render('post', {subList: [post.subPage], currentSub: post.subPage, post: post})})
+        res.render('createPost', {subList: [post.subPage], currentSub: post.subPage, post: post})})
     .catch(console.error)
 })
 

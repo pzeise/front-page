@@ -5,6 +5,6 @@
     <div class="card-body">
       <h5 class="card-title"><%= post.title%></h5>
       <p class="card-text"><%= post.description%></p>
-      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+      <a class="card-text" href="/r/<%=post.subPage.title%>/<%=post._id%>/edit"><small class="text-muted">Edit</small></a>
     </div>
   </div>
