@@ -58,9 +58,14 @@ router.put('/:subPage/:id', (req, res) => {
 })
 
 router.delete('/:subPage/:id', (req, res) => {
-    UserPost.findByIdAndDelete()
-    SubPage.findOneAndUpdate({title: req.params.subPage}, {$pullAll:{posts: [{_id: req.params.id}]}})
-    .catch(console.error)
+    UserPost.findByIdAndDelete(req.params.id)
+    .then(post => {
+        SubPage.findOne({title: req.params.subPage})
+        .populate('posts')
+        .then(sub => res.render('subPage', {subPage : sub, posts: sub.posts}))
+        .catch(console.error)
+    })
+    
 })
 
 module.exports = router

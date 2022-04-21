@@ -21,4 +21,9 @@
     </div>
     <button type="submit" class="btn btn-primary">Post</button>
     <a href="/r/" class="btn btn-secondary">Cancel</a>
+    <% if (subPage) {%> 
+    <form action="/r/<%=subPage.title%>/?_method=delete" method="POST" class="d-inline">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+      </form>
+    <% } %> 
 </form>

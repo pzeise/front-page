@@ -55,9 +55,8 @@ router.put('/:subPage', (req, res) => {
 })
 
 router.delete('/:subPage', (req, res) => {
-    SubPage.findOne({title: req.params.subPage})
-    .then(sub => UserPost.deleteMany({subPage: sub}))
-    .then(() => SubPage.findOneAndDelete({title: req.params.subPage}))    
+    SubPage.findOneAndDelete({title: req.params.subPage})    
+    .then(() => res.redirect('/r/all'))
     .catch(console.error)
 })
 
