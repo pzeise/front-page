@@ -4,7 +4,13 @@ const UserPost = require('./userPost-model')
 
 const SubPageSchema = new mongoose.Schema(
     {
-        title: {type: String, required: true, unique: true},
+        title: {
+            type: String,
+            required: true,
+            trim: true,
+            unique:true,
+            index: { collation: {locale: 'en', strength:2 }}
+        },
         description: String,
         posts: [{type: ObjectId, ref: 'UserPost'}],
         banner: String

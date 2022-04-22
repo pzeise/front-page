@@ -4,14 +4,14 @@ const SubPage = require('./subPage-model')
 
 const UserPostSchema = new mongoose.Schema(
     {
-        title: {type: String, required: true},
+        title: {type: String, required: true, trim: true},
         description: String,
         shortDescription: String,
         img: String,
-        subPage: {type: ObjectId, ref: 'SubPage'}
+        subPage: {required: true, type: ObjectId, ref: 'SubPage'},
+        author: {required: true, type: ObjectId, ref: 'User'}
         //Stretch Goals
-        //author: {type: ObjectId, ref: PageUser},
-        //votes: [{type: ObjectId, ref: UserVote}]
+        //votes: [{type: ObjectId, ref: User}]
     },
     {timestamps: true}
 )
@@ -24,6 +24,8 @@ UserPostSchema.post('findByIdAndDelete', async function(doc) {
         console.log("Post delete results: ", didItWork)
     }
 })
+
+//Create a post for create to add a short description to posts for preview
 
 const UserPost = mongoose.model('UserPost', UserPostSchema)
 module.exports = UserPost
