@@ -13,7 +13,8 @@ const SubPageSchema = new mongoose.Schema(
         },
         description: String,
         posts: [{type: ObjectId, ref: 'UserPost'}],
-        banner: String
+        banner: String,
+        mods: [{type: ObjectId, ref: 'User'}]
         //stretch goals
         //users: [{type: ObjectId, ref: PageUser}]
     },

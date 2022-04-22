@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema(
         },
         posts: [{type: ObjectId, ref: 'UserPost'}],
         email: {
-            type: Email,
+            type: String,
             required: true,
             trim: true,
             lowercase: true,
