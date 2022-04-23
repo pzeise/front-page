@@ -8,14 +8,14 @@ const UserPost = require('../models/userPost-model')
 router.get('/:subPage/post', (req, res) => {
     SubPage.find({})
     .then(subs => {
-        res.render('createPost', {subList: subs, post: false, currentSub: subs.find(sub => sub.title === req.params.subPage)})})
+        res.render('createPost', {subList: subs, post: false, isLogin: req.isAuthenticated(), currentSub: subs.find(sub => sub.title === req.params.subPage)})})
     .catch(console.error)
 })
 //view a post
 router.get('/:subPage/:id', (req, res) => {
     UserPost.findById(req.params.id)
     .populate('subPage')
-    .then(post => res.render('viewPost', {post: post}))
+    .then(post => res.render('viewPost', {post: post, isLogin: req.isAuthenticated()}))
     .catch(console.error)
 })
 
@@ -23,7 +23,7 @@ router.get('/:subPage/:id/edit', (req, res) => {
     UserPost.findById(req.params.id)
     .populate('subPage')
     .then(post => {
-        res.render('createPost', {subList: [post.subPage], currentSub: post.subPage, post: post})})
+        res.render('createPost', {subList: [post.subPage], currentSub: post.subPage, post: post, isLogin: req.isAuthenticated()})})
     .catch(console.error)
 })
 
@@ -60,10 +60,11 @@ router.put('/:subPage/:id', (req, res) => {
 router.delete('/:subPage/:id', (req, res) => {
     UserPost.findByIdAndDelete(req.params.id)
     .then(post => {
-        SubPage.findOne({title: req.params.subPage})
-        .populate('posts')
-        .then(sub => res.render('subPage', {subPage : sub, posts: sub.posts}))
-        .catch(console.error)
+        res.redirect('/r/'+req.params.subPage)
+        // SubPage.findOne({title: req.params.subPage})
+        // .populate('posts')
+        // .then(sub => res.redirect('/r/subPage', {subPage : sub, posts: sub.posts, isLogin: req.isAuthenticated()}))
+        // .catch(console.error)
     })
     
 })

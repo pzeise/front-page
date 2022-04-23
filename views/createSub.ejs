@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs',  (subPage) ? {subPage: subPage} : {subPage: false}) %> 
+<%- include('../partials/header.ejs',  {isLogin: isLogin, subPage: (subPage) ? subPage : false}) %> 
 
 <form action="/r/<%= (subPage) ? `${subPage.title}/?_method=put` : "all/subPage/"%>" method="POST">
     <div class="row form-group">

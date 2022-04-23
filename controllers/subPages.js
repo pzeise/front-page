@@ -8,7 +8,7 @@ const consoleToggle = Boolean(process.env.DEV_CONSOLE_IS_ON)
 //SubPage Index
 router.get('/', (req, res) => {
     SubPage.find({})
-    .then(subs => res.render('browse', {allSubs: subs}))
+    .then(subs => res.render('browse', {allSubs: subs, isLogin: req.isAuthenticated()}))
     .catch(console.error)
 })
 
@@ -16,13 +16,14 @@ router.get('/', (req, res) => {
 router.get('/all', (req, res) => {
     UserPost.find({})
     .populate('subPage')
-    .then(posts => res.render('all', {allPosts : posts}))
+    .then(posts => 
+        res.render('all', {allPosts : posts, isLogin: req.isAuthenticated()}))
     .catch(console.error)
 })
 
 //Create subPage
 router.get('/all/browse', (req, res) => {
-    res.render('createSub', {subPage: false})
+    res.render('createSub', {subPage: false, isLogin: req.isAuthenticated()})
 })
 
 //show subPage
@@ -30,7 +31,7 @@ router.get('/:subPage', (req, res) => {
     if (consoleToggle) {console.log(`hit ${req.params.subPage} get`)}
     SubPage.findOne({title: req.params.subPage})
     .populate('posts')
-    .then(sub => res.render('subPage', {subPage : sub, posts: sub.posts}))
+    .then(sub => res.render('subPage', {subPage : sub, posts: sub.posts, isLogin: req.isAuthenticated()}))
     .catch(console.error)
 })
 
@@ -38,7 +39,7 @@ router.get('/:subPage', (req, res) => {
 router.get('/:subPage/edit', (req, res) => {
     SubPage.findOne({title: req.params.subPage})
     .populate('posts')
-    .then(sub => res.render('createSub', {subPage: sub}))
+    .then(sub => res.render('createSub', {subPage: sub, isLogin: req.isAuthenticated()}))
     .catch(console.error)
 })
 

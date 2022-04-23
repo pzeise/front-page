@@ -12,7 +12,12 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'), 
     (req, res, next) => {
         user = req.user
-        res.send(user)
+        res.redirect('/u/home')
     })
+
+router.post('/logout', (req, res, next) => {
+    req.logout()
+    res.redirect('/r/all')
+})
 
 module.exports = router

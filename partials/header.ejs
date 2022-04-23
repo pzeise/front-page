@@ -10,13 +10,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/r/">Browse Subs</a>
           </li>
-          <li class="nav-item ms-auto">
+          <li class="nav-item">
             <a class="nav-link" href="/r/<%= (subPage) ? subPage.title : "all" %>/post">Post</a>
           </li>
-          <li class="nav-item ms-auto">
-            <a class="nav-link" href="/u/">Profile</a>
-          </li>
         </ul>
+      </div>
+      <div class="d-flex">
+        <a class="button me-2" href="/u/home"><%= (isLogin) ? "Profile" : "Login" %></a>
       </div>
     </div>
   </nav>

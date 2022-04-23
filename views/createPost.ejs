@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs', {subPage: (currentSub) ? currentSub : false}) %> 
+<%- include('../partials/header.ejs', {subPage: (currentSub) ? currentSub : false, isLogin: isLogin}) %> 
 
 <form action="/r/<%= (post) ? `${post.subPage.title}/${post._id}?_method=put` : "all/post/"%>" method="POST">
     <select class="form-select" name="subPage" aria-label="Default select example">

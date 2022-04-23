@@ -1,0 +1,36 @@
+<%- include('../partials/header.ejs', {subPage: false, isLogin: isLogin}) %> 
+
+<h1>Home Page of <%= user.name%></h1>
+<form action="/u/<%= user._id%>/?_method=put" method="POST">
+    <div class="row form-group">
+        <label for="name" class="col-sm-2 col-form-label col-form-label-lg">UserName:</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control form-control-lg" id="name" name="name" pattern="^\S+$" placeholder="cannot contain spaces" value="<%=user.name%>" required <% if (!edit) {%> disabled readonly<% } %>  >
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" <% if (!edit) {%> disabled<% } %> >Save</button>
+    <a href="/u/home/edit" class="btn btn-secondary">Edit Profile</a>
+</form>
+
+<h2>User Posts:</h2>
+<div class="row row-cols-1 row-cols-md-1 g-4"></div>
+    <% for (let i=0; i<user.posts.length; i++) {%> 
+        <div class="card mb-3" style="max-width: 1080px;">
+            <div class="row g-0">
+            <% if (user.posts[i].img) {%> 
+              <div class="col-md-4 w-10">
+                <img src="<%= user.posts[i].img %>" class="img-fluid rounded-start" >
+              </div>
+              <% } %> 
+              <div class="col-md-8">
+                <div class="card-body">
+                  <a class="card-title text-start" href="/r/<%= subPage.title %>/<%= user.posts[i]._id %>"><%= user.posts[i].title %></a>
+                  <% if (user.posts[i].shortDescription) {%> 
+                  <p class="card-text"><%= user.posts[i].shortDescription %></p>
+                  <% } %> 
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } %> 
+    </div>

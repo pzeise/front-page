@@ -1,0 +1,10 @@
+<% if (isLogin) {%> 
+    <h1>LOG OUT</h1>
+    <form action="/u/logout" method="POST" class="d-inline">
+        <input type="submit" value="LOG OUT" class="btn btn-danger" />
+      </form>
+    <p>should expire in <%= timer%>'s seconds</p>
+<% } else { %> 
+<h1>Sign in</h1>
+<a class="button google" href="/u/google">Sign in with Google</a>
+<% } %> 

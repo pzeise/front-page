@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs', {subPage: subPage}) %> 
+<%- include('../partials/header.ejs', {subPage: subPage, isLogin: isLogin}) %> 
 
 <h1><%= subPage.title%></h1>
 <a class="card-text" href="/r/<%= subPage.title%>/edit"><small class="text-muted">edit</small></a>
