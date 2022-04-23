@@ -4,18 +4,36 @@ const router = express.Router()
 const SubPage = require('../models/subPage-model')
 const UserPost = require('../models/userPost-model')
 
+const checkAuthor = function (post, req) {
+    let isAuthor = post.author._id == req.session.passport.user 
+    return isAuthor
+}
+
 //create a post
 router.get('/:subPage/post', (req, res) => {
     SubPage.find({})
     .then(subs => {
-        res.render('createPost', {subList: subs, post: false, isLogin: req.isAuthenticated(), currentSub: subs.find(sub => sub.title === req.params.subPage)})})
+        res.render('createPost', {
+            subList: subs,
+            post: false,
+            isLogin: req.isAuthenticated(),
+            currentSub: subs.find(sub => sub.title === req.params.subPage),
+            author: true
+        })})
     .catch(console.error)
 })
 //view a post
 router.get('/:subPage/:id', (req, res) => {
     UserPost.findById(req.params.id)
     .populate('subPage')
-    .then(post => res.render('viewPost', {post: post, isLogin: req.isAuthenticated()}))
+    .populate('author')
+    .then(post => {
+        let status = req.isAuthenticated()
+        res.render('viewPost', {
+        post: post,
+        isLogin: status,
+        author: (status) ? checkAuthor(post, req) : false
+    })})
     .catch(console.error)
 })
 
@@ -23,7 +41,22 @@ router.get('/:subPage/:id/edit', (req, res) => {
     UserPost.findById(req.params.id)
     .populate('subPage')
     .then(post => {
-        res.render('createPost', {subList: [post.subPage], currentSub: post.subPage, post: post, isLogin: req.isAuthenticated()})})
+        let status = req.isAuthenticated()
+        let isAuthor = false
+        if (status) {
+            isAuthor = checkAuthor(post, req)
+        }
+        if (isAuthor) {
+            res.render('createPost', {
+                subList: [post.subPage],
+                currentSub: post.subPage,
+                post: post,
+                isLogin: status,
+                author: isAuthor
+        })} else {
+            res.redirect('/r/' + post.subPage.title + '/' + post._id)
+        }
+    })
     .catch(console.error)
 })
 
@@ -34,7 +67,8 @@ router.post('/all/post', (req, res) => {
             title: req.body.title,
             description: req.body.description,
             img: req.body.img,
-            subPage: sub
+            subPage: sub,
+            author: req.session.passport.user
         })
         .then(post => {
             sub.posts.push(post)

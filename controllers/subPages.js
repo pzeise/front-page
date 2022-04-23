@@ -5,6 +5,11 @@ const UserPost = require('../models/userPost-model')
 
 const consoleToggle = Boolean(process.env.DEV_CONSOLE_IS_ON)
 
+const checkMod = function (sub, req) {
+    let isMod = sub.mods.includes(req.session.passport.user)
+    return isMod
+}
+
 //SubPage Index
 router.get('/', (req, res) => {
     SubPage.find({})
@@ -31,7 +36,15 @@ router.get('/:subPage', (req, res) => {
     if (consoleToggle) {console.log(`hit ${req.params.subPage} get`)}
     SubPage.findOne({title: req.params.subPage})
     .populate('posts')
-    .then(sub => res.render('subPage', {subPage : sub, posts: sub.posts, isLogin: req.isAuthenticated()}))
+    .then(sub => {
+        let status = req.isAuthenticated()
+        res.render('subPage', {
+            subPage : sub,
+            posts: sub.posts,
+            isLogin: status,
+            mod: (status) ? checkMod(sub, req) : false
+        })
+    })
     .catch(console.error)
 })
 
@@ -39,7 +52,21 @@ router.get('/:subPage', (req, res) => {
 router.get('/:subPage/edit', (req, res) => {
     SubPage.findOne({title: req.params.subPage})
     .populate('posts')
-    .then(sub => res.render('createSub', {subPage: sub, isLogin: req.isAuthenticated()}))
+    .then(sub => {
+        let status = req.isAuthenticated()
+        let isMod = false
+        if (status) {
+            isMod = checkMod(sub, req)
+        }
+        if (isMod) {
+            res.render('createSub', {
+                subPage: sub,
+                isLogin: status,
+                mod: isMod
+        })} else {
+            res.redirect('/r/'+ sub.title)
+        }
+})
     .catch(console.error)
 })
 

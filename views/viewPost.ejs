@@ -6,12 +6,12 @@
       <h5 class="card-title"><%= post.title%></h5>
       <p class="card-text"><%= post.description%></p>
       <div>
+        <% if (author) {%> 
         <a class="card-text" href="/r/<%=post.subPage.title%>/<%=post._id%>/edit"><small class="text-muted">Edit</small></a>
         <form action="/r/<%=post.subPage.title%>/<%=post._id%>/?_method=DELETE" method="POST" class="d-inline">
-          <input type="submit" value="Delete" class="text-muted" />
+          <input type="submit" value="Delete" class="btn btn-danger" />
         </form>
-        <!-- <a class="card-text" href="/r/<%=//post.subPage.title%>/<%=//post._id%>/?_method=DELETE"><small class="text-muted">Delete</small></a> -->
-      </div>
+        <% } %> </div>
     </div>
   </div>
 

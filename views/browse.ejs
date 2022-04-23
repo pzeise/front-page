@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="d-flex">
         <h1>Browse all SubPages</h1>  
-        <a href="/r/all/browse" class="btn btn-primary me-2">Create SubPage</a>
+        <% if (isLogin) { %><a href="/r/all/browse" class="btn btn-primary me-2">Create SubPage</a><% } %> 
     </div>
 </div>
 <div class="row row-cols-1 row-cols-md-1 g-4"></div>
