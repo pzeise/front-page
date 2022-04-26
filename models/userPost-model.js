@@ -9,9 +9,8 @@ const UserPostSchema = new mongoose.Schema(
         shortDescription: String,
         img: String,
         subPage: {required: true, type: ObjectId, ref: 'SubPage'},
-        author: {type: ObjectId, ref: 'User'}
-        //Stretch Goals
-        //votes: [{type: ObjectId, ref: User}]
+        author: {type: ObjectId, ref: 'User'},
+        votes: [{type: ObjectId, ref: 'User'}]
     },
     {timestamps: true}
 )

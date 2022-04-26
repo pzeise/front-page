@@ -9,6 +9,10 @@ const checkAuthor = function (post, req) {
     return isAuthor
 }
 
+const checkVote = function (post, req) {
+    return post.votes.indexOf(req.session.passport.user)
+}
+
 //create a post
 router.get('/:subPage/post', (req, res) => {
     SubPage.find({})
@@ -32,7 +36,8 @@ router.get('/:subPage/:id', (req, res) => {
         res.render('viewPost', {
         post: post,
         isLogin: status,
-        author: (status) ? checkAuthor(post, req) : false
+        author: (status) ? checkAuthor(post, req) : false,
+        hasVoted: (status) ? checkVote(post, req) : false
     })})
     .catch(console.error)
 })
@@ -60,6 +65,24 @@ router.get('/:subPage/:id/edit', (req, res) => {
     .catch(console.error)
 })
 
+router.get('/:subPage/:id/vote', (req, res) => {
+    UserPost.findById(req.params.id)
+    .populate('subPage')
+    .then(post => {
+        if (req.isAuthenticated()) {
+            let indexOfUser = checkVote(post, req)
+            if (indexOfUser === -1) {
+                post.votes.push(req.session.passport.user)
+                post.save()
+            } else {
+                post.votes.splice(indexOfUser, 1)
+                post.save()
+            }
+        }
+        res.redirect('/r/' + post.subPage.title + '/' + post._id)
+    })
+})
+
 router.post('/all/post', (req, res) => {
     SubPage.findOne({title: req.body.subPage})
     .then(sub => {
@@ -68,7 +91,8 @@ router.post('/all/post', (req, res) => {
             description: req.body.description,
             img: req.body.img,
             subPage: sub,
-            author: req.session.passport.user
+            author: req.session.passport.user,
+            votes: [req.session.passport.user]
         })
         .then(post => {
             sub.posts.push(post)
