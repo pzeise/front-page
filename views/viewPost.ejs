@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs', {subPage: post.subPage, isLogin: isLogin}) %> 
 <div>
   <!-- <a href="#"><i class="fa-solid fa-caret-up"></i></a> -->
-  <a href="/r/<%=post.subPage.title%>/<%=post._id%>/vote"><%= (hasVoted) ? "VOTED" : "VOTE" %> </a>
+  <a href="/r/<%=post.subPage.title%>/<%=post._id%>/vote"><%= (hasVoted >= 0) ? "VOTED" : "VOTE" %> </a>
 </div>
 <div class="card mb-3">
     <img src="<%= post.img%>" class="card-img-top" alt="...">
