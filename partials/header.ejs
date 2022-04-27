@@ -28,7 +28,11 @@
         </ul>
       </div>
       <div class="d-flex">
-        <a class="button me-2" href="/u/home"><%= (isLogin) ? "Profile" : "Login" %></a>
+        <% if (isLogin) {%> 
+          <a class="btn btn-secondary me-2" href="/u/home">Profile</a>
+          <% } else {%> 
+            <a class="btn btn-primary me-2" href="/u/home">Login</a>
+            <% } %> 
       </div>
     </div>
   </nav>
