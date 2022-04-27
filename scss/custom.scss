@@ -20,3 +20,9 @@ div.subPageBanner a {
     opacity: 0; /* Fix to make div clickable in IE */
     filter: alpha(opacity=1); /* Fix to make div clickable in IE */
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}

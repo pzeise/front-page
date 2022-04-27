@@ -2,8 +2,8 @@
 <div>
   <a href="/r/<%=post.subPage.title%>/<%=post._id%>/vote"><%= (hasVoted >= 0) ? "VOTED" : "VOTE" %> </a>
 </div>
-<div class="card mb-3">
-    <img src="<%= post.img%>" class="card-img-top img-fluid" alt="...">
+<div class="card mb-3" style="height: 500px;">
+    <img src="<%= post.img%>" class="card-img-top img-fluid" alt="..." >
     <div class="card-body">
       <h5 class="card-title"><%= post.title%></h5>
       <p class="card-text"><%= post.description%></p>
