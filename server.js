@@ -36,6 +36,7 @@ app.use('/r', subPageControllers)
 app.use('/r', userPostControllers)
 app.use('/u', authControllers)
 app.use('/u', userControllers)
+app.use('/node_modules', express.static(__dirname + '/node_modules'))
 
 
 

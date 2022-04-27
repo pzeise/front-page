@@ -37,7 +37,7 @@ router.get('/:subPage/:id', (req, res) => {
         post: post,
         isLogin: status,
         author: (status) ? checkAuthor(post, req) : false,
-        hasVoted: (status) ? checkVote(post, req) : false
+        hasVoted: (status) ? checkVote(post, req) : -1
     })})
     .catch(console.error)
 })
