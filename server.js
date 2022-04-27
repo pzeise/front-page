@@ -38,7 +38,9 @@ app.use('/u', authControllers)
 app.use('/u', userControllers)
 app.use('/node_modules', express.static(__dirname + '/node_modules'))
 
-
+app.get('/', (req, res) => {
+  res.redirect('/r/all')
+})
 
 const port = process.env.PORT || 4000
 

@@ -1,11 +1,18 @@
 <%- include('../partials/header.ejs', {subPage: post.subPage, isLogin: isLogin}) %> 
-<div>
-  <a href="/r/<%=post.subPage.title%>/<%=post._id%>/vote"><%= (hasVoted >= 0) ? "VOTED" : "VOTE" %> </a>
+
+<div class="container">
+<div class="row mb-3">
+  <div class="col-2">
+    <p>Total Votes: <%= post.votes.length %></p>
+  </div>
+  <div class="col-2">
+    <a href="/r/<%=post.subPage.title%>/<%=post._id%>/vote"><%= (hasVoted >= 0) ? "VOTED" : "VOTE" %> </a>
+  </div>
 </div>
 <div class="card mb-3" style="height: 500px;">
-    <img src="<%= post.img%>" class="card-img-top img-fluid" alt="..." >
     <div class="card-body">
       <h5 class="card-title"><%= post.title%></h5>
+      <img src="<%= post.img%>" class="card-img-top img-fluid" alt="..." >
       <p class="card-text"><%= post.description%></p>
       <div>
         <% if (author) {%> 
@@ -17,5 +24,5 @@
     </div>
   </div>
 
-
+</div>
   

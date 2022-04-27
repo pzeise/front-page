@@ -1,12 +1,15 @@
 <%- include('../partials/header.ejs', {subPage: false, isLogin: isLogin}) %> 
-<div class="container-fluid">
-    <div class="d-flex">
+<div class="container">
+    <div class="d-flex my-3">
+      <div class="col-8">
         <h1>Browse all SubPages</h1>  
+      </div>
+      <div class="col-4">
         <% if (isLogin) { %><a href="/r/all/browse" class="btn btn-primary me-2">Create SubPage</a><% } %> 
+      </div>
     </div>
-</div>
-<div class="row row-cols-1 row-cols-md-1 g-4">
     <% for (let i=0; i<allSubs.length; i++) {%> 
+      <div class="row row-cols-1 row-cols-md-1 g-4">
         <div class="card mb-3" style="max-width: 1080px;">
             <div class="row g-0">
               <div class="col-md-8">
@@ -16,5 +19,8 @@
               </div>
             </div>
           </div>
+        </div>
         <% } %> 
-    </div>
+
+    
+</div>

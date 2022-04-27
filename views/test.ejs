@@ -12,3 +12,26 @@
 
 
 <a href="/r/all" class="btn btn-secondary">Cancel</a>
+
+
+<% for (let i=0; i<user.posts.length; i++) {%> 
+  <div class="row row-cols-1 row-cols-md-1 g-4">
+    <div class="card mb-3" style="max-width: 1080px;">
+        <div class="row g-0">
+        <% if (user.posts[i].img) {%> 
+          <div class="col-md-4 w-10">
+            <img src="<%= user.posts[i].img %>" class="img-fluid rounded-start" >
+          </div>
+          <% } %> 
+          <div class="col-md-8">
+            <div class="card-body">
+              <a class="card-title text-start" href="/r/<%= user.posts[i].title %>/<%= user.posts[i]._id %>"><%= user.posts[i].title %></a>
+              <% if (user.posts[i].shortDescription) {%> 
+              <p class="card-text"><%= user.posts[i].shortDescription %></p>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% } %> 

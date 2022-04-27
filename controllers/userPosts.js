@@ -13,6 +13,15 @@ const checkVote = function (post, req) {
     return post.votes.indexOf(req.session.passport.user)
 }
 
+const seedAuthor = function (post) {
+    post.populate('author')
+    .then(post => {
+        post.author.posts.push(post._id)
+        post.author.save()
+        return
+    })
+}
+
 //create a post
 router.get('/:subPage/post', (req, res) => {
     SubPage.find({})
@@ -97,6 +106,7 @@ router.post('/all/post', (req, res) => {
         .then(post => {
             sub.posts.push(post)
             sub.save()
+            seedAuthor(post)
             console.log(sub)
             res.redirect('/r/' + sub.title + '/' + post._id)
         })

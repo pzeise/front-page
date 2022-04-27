@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs', {subPage: subPage, isLogin: isLogin}) %> 
 <div class="container">
-<div class="">
+<div class="row">
   <h1><%= subPage.title%></h1>
   <% if (isLogin) { %><a class="card-text" href="/r/<%= subPage.title%>/edit"><small class="text-muted">edit</small></a> <% } %> 
 </div>
@@ -9,7 +9,7 @@
 
     <% for (let i=0; i<posts.length; i++) {%> 
       <div class="row row-cols-1 row-cols-md-1 g-4">
-        <div class="card mb-3" style="max-width: 1080px; height: 150px">
+        <div class="card mb-3 p-2" style="max-width: 1080px;">
             <div class="row g-0">
             <% if (posts[i].img) {%> 
               <div class="col-md-4 w-10">
