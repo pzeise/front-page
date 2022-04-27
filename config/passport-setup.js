@@ -3,6 +3,10 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const User = require('../models/user-model')
 const mongoose = require('mongoose')
 
+const siteURI = process.env.NODE_ENV === 'production'
+    ? 'https://fierce-headland-13867.herokuapp.com/u/google/redirect'
+    : 'http://localhost:4000/u/google/redirect'
+
 //I think this and next function are what are listening to recieve cookies with user data and then release it when we're done?
 passport.serializeUser((user, done) => {
     done(null, user.id)
@@ -19,7 +23,7 @@ passport.use(
     new GoogleStrategy({
         clientID: '508265478606-dan5o8b9nc6vprv0412npga30nq3rui8.apps.googleusercontent.com',
         clientSecret: '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',
-        callbackURL: 'http://localhost:4000/u/google/redirect'
+        callbackURL: siteURI
     }, (accessToken, refreshToken, profile, done) => {
         User.findOne({googleId: profile.id})
         .then(currentUser => {
