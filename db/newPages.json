@@ -1,0 +1,43 @@
+[
+  {
+    "_id": "625b73a95e176d9140c2e6d7",
+    "title": "murderMitts",
+    "description": "Cute Cat Claws!",
+    "posts": [
+      "625b73a2bba54214f9f9d5b2",
+      "625b73a2bba54214f9f9d5b1",
+      "625b73a2bba54214f9f9d5b4"
+    ],
+    "createdAt": "2022-04-17T01:55:53.222Z",
+    "updatedAt": "2022-04-17T01:55:53.222Z",
+    "__v": 0,
+    "mods": ["62632f3482c51dfd293246a7"]
+  },
+  {
+    "_id": "625b73a95e176d9140c2e6d9",
+    "title": "programmingMemes",
+    "description": "the dankest coders",
+    "posts": [
+      "625b73a2bba54214f9f9d5b5",
+      "625b73a2bba54214f9f9d5b3",
+      "625b73a2bba54214f9f9d5b8"
+    ],
+    "createdAt": "2022-04-17T01:55:53.223Z",
+    "updatedAt": "2022-04-17T01:55:53.223Z",
+    "__v": 0,
+    "mods": ["62632f3482c51dfd293246a7"]
+  },
+  {
+    "_id": "625b73a95e176d9140c2e6d8",
+    "title": "tippytaps",
+    "description": "Animals Jumping!",
+    "posts": [
+      "625b73a2bba54214f9f9d5b7",
+      "625b73a2bba54214f9f9d5b9",
+      "625b73a2bba54214f9f9d5b6"
+    ],
+    "createdAt": "2022-04-17T01:55:53.222Z",
+    "updatedAt": "2022-04-17T01:55:53.222Z",
+    "__v": 0
+  }
+]
