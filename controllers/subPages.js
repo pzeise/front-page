@@ -13,6 +13,7 @@ const checkMod = function (sub, req) {
 //SubPage Index
 router.get('/', (req, res) => {
     SubPage.find({})
+    .sort({updatedAt: 'desc'})
     .then(subs => res.render('browse', {allSubs: subs, isLogin: req.isAuthenticated()}))
     .catch(console.error)
 })
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
 router.get('/all', (req, res) => {
     UserPost.find({})
     .populate('subPage')
+    .sort({updatedAt: 'desc'})
     .then(posts => 
         res.render('all', {allPosts : posts, isLogin: req.isAuthenticated()}))
     .catch(console.error)
