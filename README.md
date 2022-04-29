@@ -3,6 +3,7 @@
 ### Description
 A reddit inspired frame work that allows users, to create and view content. The site allows a visitor to create a new user using an exisiting Google login. From there they are able to browse, create, and edit subPages, additionally they can do the same with posts which allow for titles, descriptions, and image links. Each user is allowed to vote once on a post, additional attempts to vote with revote their previous vote per the convention used on most other social sites. 
 
+![frontPageDemoFinal](https://user-images.githubusercontent.com/97360775/166075157-82742263-9edd-4178-bac8-952825cc58cc.gif)
 
 ### Technologies used
  - Express
@@ -39,4 +40,6 @@ A reddit inspired frame work that allows users, to create and view content. The 
 Getting Google login, passport and sessions working was a major hurdle, as well as getting bootstrap working correctly. Both of those stemmed from me just jumping into the situation half cocked. When I went back and read the docs from the beginning I was able to walk myself through the proceedure from teh start and came out with a much better understanding of the issues. 
 
 ### Wire Frame 
-![nerdleWireFrame](https://user-images.githubusercontent.com/97360775/159097283-61bdc743-5956-4080-923b-fff70ef34a2f.png)
+![50182480-b9c8-11ec-9e06-e57b56a1b5c8](https://user-images.githubusercontent.com/97360775/166075226-587f651a-48fb-4f4e-8b60-063fc0217713.png)
+![f6fcc080-b9c8-11ec-9c1f-b581821f134e](https://user-images.githubusercontent.com/97360775/166075245-0d363795-dc96-4e4e-9e4f-fd6db4ed3779.png)
+
