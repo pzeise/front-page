@@ -29,6 +29,7 @@ A reddit inspired frame work that allows users, to create and view content. The 
  - [x] ability to edit either model.
 
 ### Stretch Goals
+ - [x] sort posts and subs by last updated
  - [x] ability to create a user
  - [x] ability to vote on a post
  - [ ] ability to comment on a post
